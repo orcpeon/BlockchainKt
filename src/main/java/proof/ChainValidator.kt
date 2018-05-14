@@ -2,6 +2,7 @@ package proof
 
 import commons.Block
 import commons.Chain
+import commons.Chain.Companion.difficulty
 
 
 class ChainValidator {
@@ -11,6 +12,7 @@ class ChainValidator {
 
             var currentBlock : Block
             var previousBlock : Block
+            val hashTarget = String(CharArray(difficulty)).replace('\u0000', '0')
 
             for (i in 1 until chain.size) {
 
@@ -24,6 +26,11 @@ class ChainValidator {
 
                 if (!previousBlock.hash.equals(currentBlock.previousHash)) {
                     println("Previous block's hash is invalid")
+                }
+
+                if (!currentBlock.hash.substring(0, difficulty).equals(hashTarget)) {
+                    println("This block hasn't been mined!")
+                    return false
                 }
 
             }

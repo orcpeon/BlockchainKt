@@ -18,6 +18,8 @@ class Block(data : String, previousHash : String) {
 
     fun mineBlock(dificulty : Int) {
 
+        println("Mining block")
+
         val target = String(CharArray(dificulty)).replace('\u0000', '0') //Create a string with difficulty * "0"
 
         while (!hash.substring(0, dificulty).equals(target)) {
