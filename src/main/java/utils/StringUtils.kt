@@ -6,7 +6,7 @@ class StringUtils {
 
     companion object {
 
-        fun applySHA256(input : String) {
+        fun applySHA256(input : String) : String {
 
             try {
 
@@ -21,7 +21,10 @@ class StringUtils {
                     }
                     hexString.append(hex)
                 }
+
+                return  hexString.toString()
             } catch (e : Exception) {
+//                "Failure"
                 throw RuntimeException("Failed to encrypt the input")
             }
         }
